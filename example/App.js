@@ -22,6 +22,7 @@ import Callouts from './examples/Callouts';
 import Overlays from './examples/Overlays';
 import DefaultMarkers from './examples/DefaultMarkers';
 import CustomMarkers from './examples/CustomMarkers';
+import ImageOverlay from './examples/ImageOverlay';
 import CachedMap from './examples/CachedMap';
 import LoadingMap from './examples/LoadingMap';
 import TakeSnapshot from './examples/TakeSnapshot';
@@ -134,6 +135,7 @@ class App extends React.Component {
       [Overlays, 'Circles, Polygons, and Polylines', true],
       [DefaultMarkers, 'Default Markers', true],
       [CustomMarkers, 'Custom Markers', true],
+      [ImageOverlay, 'Image Overlay', true],
       [TakeSnapshot, 'Take Snapshot', true, '(incomplete)'],
       [CachedMap, 'Cached Map'],
       [LoadingMap, 'Map with loading'],
