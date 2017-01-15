@@ -37,7 +37,7 @@ export default class ImageOverlay extends Component {
         longitudeDelta: LONGITUDE_DELTA,
       },
       overlay: {
-        bounds: { OVERLAY_TOP_LEFT_COORDINATE, OVERLAY_BOTTOM_RIGHT_COORDINATE},
+        bounds: [OVERLAY_TOP_LEFT_COORDINATE, OVERLAY_BOTTOM_RIGHT_COORDINATE],
         image: overlayBlueImg,
       },
     };

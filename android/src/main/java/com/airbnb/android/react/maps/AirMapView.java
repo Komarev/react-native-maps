@@ -36,6 +36,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -76,6 +77,7 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
     private final Map<Marker, AirMapMarker> markerMap = new HashMap<>();
     private final Map<Polyline, AirMapPolyline> polylineMap = new HashMap<>();
     private final Map<Polygon, AirMapPolygon> polygonMap = new HashMap<>();
+    private final Map<GroundOverlay, AirMapOverlay> overlayMap = new HashMap<>();
     private final ScaleGestureDetector scaleDetector;
     private final GestureDetectorCompat gestureDetector;
     private final AirMapManager manager;
@@ -166,6 +168,15 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
                   marker.showInfoWindow();
                   return true;
                 }
+            }
+        });
+
+        map.setOnGroundOverlayClickListener(new GoogleMap.OnGroundOverlayClickListener() {
+            @Override
+            public void onGroundOverlayClick(GroundOverlay overlay) {
+                WritableMap event = makeClickEventData(overlay.getPosition());
+                event.putString("action", "overlay-press");
+                manager.pushEvent(overlayMap.get(overlay), "onPress", event);
             }
         });
 
@@ -399,6 +410,12 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
             features.add(index, annotation);
             Marker marker = (Marker) annotation.getFeature();
             markerMap.put(marker, annotation);
+        } else if (child instanceof AirMapOverlay) {
+            AirMapOverlay overlay = (AirMapOverlay) child;
+            overlay.addToMap(map);
+            features.add(index, overlay);
+            GroundOverlay groundOverlay = (GroundOverlay) overlay.getFeature();
+            overlayMap.put(groundOverlay, overlay);
         } else if (child instanceof AirMapPolyline) {
             AirMapPolyline polylineView = (AirMapPolyline) child;
             polylineView.addToMap(map);

@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Platform,
   Animated,
-  findNodeHandle,
 } from 'react-native';
 
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
@@ -19,7 +18,6 @@ class MapOverlay extends Component {
     uiViewClassName: 'AIR<provider>MapOverlay',
     validAttributes: {
       image: true,
-      bounds: true,
     },
   };
 
@@ -36,7 +34,7 @@ class MapOverlay extends Component {
     // A custom image to be used as overlay. Only local image resources are allowed to be used.
     image: PropTypes.any.isRequired,
     // Top left and bottom right coordinates for overlay
-    bounds: PropTypes.object.isRequired,
+    bounds: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
     // A name for the image overlay
     name: PropTypes.string,
     // A number of degrees from north to rotate the image clockwise
@@ -44,7 +42,7 @@ class MapOverlay extends Component {
     // A number indicating the render order of the image
     zIndex: PropTypes.number,
     // A decimal from 0 to 1 in indicating the opaqueness of the overlay 1 = completely transparent.
-    tranparency: PropTypes.number,
+    transparency: PropTypes.number,
     // Callback that is called when the user presses on the overlay
     onPress: PropTypes.func,
   };
