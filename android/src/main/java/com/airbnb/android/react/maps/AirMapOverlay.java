@@ -2,6 +2,7 @@ package com.airbnb.android.react.maps;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
 
@@ -33,6 +34,8 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import javax.annotation.Nullable;
 
 public class AirMapOverlay extends AirMapFeature {
+
+    private static final String TAG = "AirMapOverlay";
 
     private static float ANCHOR_X = 0.5f;
     private static float ANCHOR_Y = 0.5f;
@@ -165,10 +168,13 @@ public class AirMapOverlay extends AirMapFeature {
         }
     }
 
-    public void setImageBounds(ReadableArray bounds) {
-        overlayBounds = new LatLngBounds(
-            new LatLng(bounds.getArray(0).getDouble(0), bounds.getArray(0).getDouble(1)),
-            new LatLng(bounds.getArray(1).getDouble(0), bounds.getArray(1).getDouble(1)));
+    public void setImageBounds(ReadableArray topLeft, ReadableArray bottomRight) {
+        LatLng topLeftCoord = new LatLng(topLeft.getDouble(0), topLeft.getDouble(1));
+        LatLng bottomRightCoord = new LatLng(bottomRight.getDouble(0), bottomRight.getDouble(1));
+        overlayBounds = new LatLngBounds.Builder()
+                .include(topLeftCoord)
+                .include(bottomRightCoord)
+                .build();
         if (overlay != null) {
             overlay.setPositionFromBounds(overlayBounds);
         }
@@ -192,14 +198,27 @@ public class AirMapOverlay extends AirMapFeature {
                     .setOldController(logoHolder.getController())
                     .build();
             logoHolder.setController(controller);
+            if (imageBitmapDescriptor == null) {
+                imageBitmapDescriptor = BitmapDescriptorFactory.fromBitmap(createDrawable());
+            }
         } else {
             imageBitmapDescriptor = getBitmapDescriptorByName(uri);
             updateImage();
         }
     }
 
+    private Bitmap createDrawable() {
+        this.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        this.draw(canvas);
+
+        return bitmap;
+    }
+
     private int getDrawableResourceByName(String name) {
-        return getResources().getIdentifier(name, "drawable", getContext().getPackageName());
+        int resId = getResources().getIdentifier(name, "mipmap", getContext().getPackageName());
+        return resId != 0 ? resId : getResources().getIdentifier(name, "drawable", getContext().getPackageName());
     }
 
     private BitmapDescriptor getBitmapDescriptorByName(String name) {

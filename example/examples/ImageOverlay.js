@@ -43,7 +43,7 @@ export default class ImageOverlay extends Component {
     };
   }
 
-  onMapPress = (e) => {
+  onOverlayPress = (e) => {
     console.log(e.nativeEvent.coordinate);
   };
 
@@ -54,10 +54,10 @@ export default class ImageOverlay extends Component {
           provider={this.props.provider}
           style={styles.map}
           initialRegion={this.state.region}
-          onPress={this.onMapPress}
         >
           <MapView.Overlay
             {...this.state.overlay}
+            onPress={this.onOverlayPress}
           />
         </MapView>
       </View>

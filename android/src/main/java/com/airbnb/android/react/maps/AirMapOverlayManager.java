@@ -27,7 +27,7 @@ public class AirMapOverlayManager extends ViewGroupManager<AirMapOverlay> {
 
     @ReactProp(name = "bounds")
     public void setImageBounds(AirMapOverlay view, ReadableArray array) {
-        view.setImageBounds(array);
+        view.setImageBounds(array.getArray(0), array.getArray(1));
     }
 
     @ReactProp(name = "name")
