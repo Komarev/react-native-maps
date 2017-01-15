@@ -166,9 +166,9 @@ public class AirMapOverlay extends AirMapFeature {
     }
 
     public void setImageBounds(ReadableArray bounds) {
-        // TODO: remove mocked coords and link this with JS props
-        overlayBounds = new LatLngBounds(new LatLng(37.80357770113398, -122.44756892323494),
-                new LatLng(37.79399485340466, -122.43389233946799));
+        overlayBounds = new LatLngBounds(
+            new LatLng(bounds.getArray(0).getDouble(0), bounds.getArray(0).getDouble(1)),
+            new LatLng(bounds.getArray(1).getDouble(0), bounds.getArray(1).getDouble(1)));
         if (overlay != null) {
             overlay.setPositionFromBounds(overlayBounds);
         }
