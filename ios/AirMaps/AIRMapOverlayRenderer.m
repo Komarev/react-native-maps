@@ -22,7 +22,7 @@
     CGRect theRect = [self rectForMapRect:theMapRect];
     CGRect clipRect = [self rectForMapRect:mapRect];
   
-    CGContextSetAlpha(context, self.transparency);
+    CGContextSetAlpha(context, 1.0 - self.transparency);
     CGContextRotateCTM(context, M_PI * self.rotation / 180.0);
   
     CGContextAddRect(context, clipRect);

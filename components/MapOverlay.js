@@ -22,7 +22,7 @@ const defaultProps = {
   name: '',
   rotation: 0,
   zIndex: 0,
-  transparency: 1.0,
+  transparency: 0.0,
   onPress: () => {},
 };
 
