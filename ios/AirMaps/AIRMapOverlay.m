@@ -94,14 +94,15 @@
 - (void)createOverlayRendererIfPossible
 {
   if (MKMapRectIsEmpty(_mapRect) || !self.overlayImage) return;
-  self.renderer = [[AIRMapOverlayRenderer alloc] initWithOverlay:self];
+  __weak typeof(self) weakSelf = self;
+  self.renderer = [[AIRMapOverlayRenderer alloc] initWithOverlay:weakSelf];
 }
 
 - (void)update
 {
   if (!_renderer) return;
   _renderer.rotation = _rotation;
-  _renderer.transparency = _transparency; // _renderer.alpha = _transparency;
+  _renderer.transparency = _transparency;
   
   if (_map == nil) return;
   [_map removeOverlay:self];
