@@ -37,12 +37,14 @@ export default class ImageOverlay extends Component {
       overlay: {
         bounds: [OVERLAY_TOP_LEFT_COORDINATE, OVERLAY_BOTTOM_RIGHT_COORDINATE],
         image: overlayBlueImg,
+        rotation: 0,
+        transparency: 1.0,
       },
     };
   }
 
   onOverlayPress = (e) => {
-    console.log('onOverlayPress: ', e.nativeEvent.coordinate);
+    console.log(e.nativeEvent.coordinate);
   };
 
   render() {

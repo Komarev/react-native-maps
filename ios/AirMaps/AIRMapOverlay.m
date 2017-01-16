@@ -103,7 +103,7 @@
 {
   if (!_renderer) return;
   _renderer.rotation = _rotation;
-  _renderer.transparency = 0.8; // _renderer.alpha = _transparency;
+  _renderer.transparency = _transparency; // _renderer.alpha = _transparency;
   
   if (_map == nil) return;
   [_map removeOverlay:self];

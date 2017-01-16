@@ -32,7 +32,7 @@ RCT_EXPORT_VIEW_PROPERTY(name, NSString)
 RCT_REMAP_VIEW_PROPERTY(bounds, boundsRect, NSArray)
 RCT_REMAP_VIEW_PROPERTY(image, imageSrc, NSString)
 RCT_EXPORT_VIEW_PROPERTY(rotation, NSInteger)
-//RCT_EXPORT_VIEW_PROPERTY(transparency, CGFloat)
+RCT_EXPORT_VIEW_PROPERTY(transparency, CGFloat)
 RCT_EXPORT_VIEW_PROPERTY(zIndex, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
 
