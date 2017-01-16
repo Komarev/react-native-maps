@@ -20,14 +20,12 @@
     
     MKMapRect theMapRect = [self.overlay boundingMapRect];
     CGRect theRect = [self rectForMapRect:theMapRect];
-    CGRect clipRect = [self rectForMapRect:mapRect];
   
     CGContextSetAlpha(context, 1.0 - self.transparency);
     CGContextRotateCTM(context, M_PI * self.rotation / 180.0);
   
-    CGContextAddRect(context, clipRect);
-    CGContextClip(context);
-    
+    CGContextAddRect(context, theRect);
+  
     CGContextDrawImage(context, theRect, imageReference);
   
     CGContextRestoreGState(context);
