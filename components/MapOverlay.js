@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react';
 import {
   View,
   StyleSheet,
-  Platform,
   Animated,
 } from 'react-native';
 
@@ -12,44 +11,40 @@ import decorateMapComponent, {
   USES_DEFAULT_IMPLEMENTATION,
 } from './decorateMapComponent';
 
+const viewConfig = {
+  uiViewClassName: 'AIR<provider>MapOverlay',
+  validAttributes: {
+    image: true,
+  },
+};
+
+const defaultProps = {
+  name: '',
+  rotation: 0,
+  zIndex: 0,
+  transparency: 1.0,
+  onPress: () => {},
+};
+
+const propTypes = {
+  ...View.propTypes,
+  // A custom image to be used as overlay. Only local image resources are allowed to be used.
+  image: PropTypes.any.isRequired,
+  // Top left and bottom right coordinates for overlay
+  bounds: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
+  // A name for the image overlay
+  name: PropTypes.string,
+  // A number of degrees from north to rotate the image clockwise
+  rotation: PropTypes.number,
+  // A number indicating the render order of the image
+  zIndex: PropTypes.number,
+  // A decimal from 0 to 1 in indicating the opaqueness of the overlay 1 = completely transparent.
+  transparency: PropTypes.number,
+  // Callback that is called when the user presses on the overlay
+  onPress: PropTypes.func,
+};
+
 class MapOverlay extends Component {
-
-  static viewConfig = {
-    uiViewClassName: 'AIR<provider>MapOverlay',
-    validAttributes: {
-      image: true,
-    },
-  };
-
-  static defaultProps = {
-    name: '',
-    rotation: 0,
-    zIndex: 0,
-    transparency: 0,
-    onPress: () => {},
-  };
-
-  static propTypes = {
-    ...View.propTypes,
-    // A custom image to be used as overlay. Only local image resources are allowed to be used.
-    image: PropTypes.any.isRequired,
-    // Top left and bottom right coordinates for overlay
-    bounds: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
-    // A name for the image overlay
-    name: PropTypes.string,
-    // A number of degrees from north to rotate the image clockwise
-    rotation: PropTypes.number,
-    // A number indicating the render order of the image
-    zIndex: PropTypes.number,
-    // A decimal from 0 to 1 in indicating the opaqueness of the overlay 1 = completely transparent.
-    transparency: PropTypes.number,
-    // Callback that is called when the user presses on the overlay
-    onPress: PropTypes.func,
-  };
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     let image;
@@ -69,6 +64,10 @@ class MapOverlay extends Component {
     );
   }
 }
+
+MapOverlay.propTypes = propTypes;
+MapOverlay.defaultProps = defaultProps;
+MapOverlay.viewConfig = viewConfig;
 
 const styles = StyleSheet.create({
   overlay: {

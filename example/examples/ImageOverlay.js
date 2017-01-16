@@ -2,9 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   Dimensions,
-  TouchableOpacity,
 } from 'react-native';
 
 import MapView from 'react-native-maps';
@@ -44,7 +42,7 @@ export default class ImageOverlay extends Component {
   }
 
   onOverlayPress = (e) => {
-    console.log(e.nativeEvent.coordinate);
+    console.log('onOverlayPress: ', e.nativeEvent.coordinate);
   };
 
   render() {
