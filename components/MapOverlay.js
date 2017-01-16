@@ -30,7 +30,7 @@ const propTypes = {
   ...View.propTypes,
   // A custom image to be used as overlay.
   image: PropTypes.any.isRequired,
-  // Top left and bottom right coordinates for overlay
+  // Top left and bottom right coordinates for the overlay
   bounds: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
   // A name for the image overlay
   name: PropTypes.string,
