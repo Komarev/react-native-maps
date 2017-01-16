@@ -1,10 +1,8 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   Dimensions,
-  TouchableOpacity,
 } from 'react-native';
 
 import MapView from 'react-native-maps';
@@ -39,6 +37,8 @@ export default class ImageOverlay extends Component {
       overlay: {
         bounds: [OVERLAY_TOP_LEFT_COORDINATE, OVERLAY_BOTTOM_RIGHT_COORDINATE],
         image: overlayBlueImg,
+        rotation: 0,
+        transparency: 0.0,
       },
     };
   }
