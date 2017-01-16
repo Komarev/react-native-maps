@@ -28,7 +28,7 @@ const defaultProps = {
 
 const propTypes = {
   ...View.propTypes,
-  // A custom image to be used as overlay. Only local image resources are allowed to be used.
+  // A custom image to be used as overlay.
   image: PropTypes.any.isRequired,
   // Top left and bottom right coordinates for overlay
   bounds: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,

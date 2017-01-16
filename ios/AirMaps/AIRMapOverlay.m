@@ -80,10 +80,8 @@
 - (void)setBoundsRect:(NSArray *)boundsRect {
   _boundsRect = boundsRect;
   
-  NSArray *coord1Array = boundsRect[0];
-  NSArray *coord2Array = boundsRect[1];
-  _topLeftCoordinate = CLLocationCoordinate2DMake([coord1Array[0] doubleValue], [coord1Array[1] doubleValue]);
-  _bottomRightCoordinate = CLLocationCoordinate2DMake([coord2Array[0] doubleValue], [coord2Array[1] doubleValue]);
+  _topLeftCoordinate = CLLocationCoordinate2DMake([boundsRect[0][0] doubleValue], [boundsRect[0][1] doubleValue]);
+  _bottomRightCoordinate = CLLocationCoordinate2DMake([boundsRect[1][0] doubleValue], [boundsRect[1][1] doubleValue]);
   
   MKMapPoint topLeft = MKMapPointForCoordinate(_topLeftCoordinate);
   MKMapPoint bottomRight = MKMapPointForCoordinate(_bottomRightCoordinate);
