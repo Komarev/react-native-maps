@@ -112,12 +112,12 @@
 
 #pragma mark MKOverlay implementation
 
-- (CLLocationCoordinate2D) coordinate
+- (CLLocationCoordinate2D)coordinate
 {
   return MKCoordinateForMapPoint(MKMapPointMake(MKMapRectGetMidX(_mapRect), MKMapRectGetMidY(_mapRect)));
 }
 
-- (MKMapRect) boundingMapRect
+- (MKMapRect)boundingMapRect
 {
   return _mapRect;
 }
