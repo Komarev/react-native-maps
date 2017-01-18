@@ -25,7 +25,6 @@
     CGContextRotateCTM(context, M_PI * self.rotation / 180.0);
   
     CGContextAddRect(context, theRect);
-  
     CGContextDrawImage(context, theRect, imageReference);
   
     CGContextRestoreGState(context);

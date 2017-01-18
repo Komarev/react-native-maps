@@ -405,7 +405,7 @@ RCT_EXPORT_METHOD(takeSnapshot:(nonnull NSNumber *)reactTag
           if (MKMapRectContainsPoint(imageOverlay.boundingMapRect, mapPoint)) {
             if (imageOverlay.onPress) {
               id event = @{
-                           @"action": @"overlay-press",
+                           @"action": @"image-overlay-press",
                            @"name": imageOverlay.name ?: @"unknown",
                            @"coordinate": @{
                                @"latitude": @(imageOverlay.coordinate.latitude),
