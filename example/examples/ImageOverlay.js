@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import MapView from 'react-native-maps';
-import overlayBlueImg from './assets/overlay-blue.png';
+import overlayBlueImg from './assets/flag-blue.png';
 
 const { width, height } = Dimensions.get('window');
 
