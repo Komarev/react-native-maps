@@ -22,7 +22,7 @@
     CGRect theRect = [self rectForMapRect:theMapRect];
   
     // Core Graphics uses a different coordinate system, where the origin is in the lower left corner.
-    // So, we need to flip the image by translating the image by 0 units on the x axis and by the images
+    // So, we need to flip the image by translating it by 0 units on the x axis and by the images
     // height on the y axis.
     CGContextTranslateCTM(context, 0, theRect.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
